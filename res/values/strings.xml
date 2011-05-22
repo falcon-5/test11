@@ -3,4 +3,5 @@
     <string name="app_name">SimpleBrowser</string>
     <string name="btn_Browse">更新</string>
     <string name="default_url">http://google.co.jp</string>
+    <string name="message">しばらくお待ちください</string>
 </resources>

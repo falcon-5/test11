@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.Window;
 import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.EditText;
@@ -18,9 +17,16 @@ public class MainActivity extends Activity
         super.onCreate(savedInstanceState);
 
         //Activityにプログレスバーを表示可能にする。
-        requestWindowFeature(Window.FEATURE_PROGRESS);
+        //表示されてない...？
+//        requestWindowFeature(Window.FEATURE_PROGRESS);
 
         setContentView(R.layout.main);
+
+        /* 表示されるけど変...
+        setProgressBarVisibility(true);
+        //不定状態 プログレス（進捗）がない状態
+        setProgressBarIndeterminate(true);
+        */
 
         Button btn = (Button)findViewById(R.id.btn_browse);
         btn.setOnClickListener(this);
@@ -31,7 +37,7 @@ public class MainActivity extends Activity
         webview.getSettings().setJavaScriptEnabled(true);
 
         //カスタムしたWebViewClientを設定
-        webview.setWebViewClient(new MyWebViewClient());
+        webview.setWebViewClient(new MyWebViewClient(this));
     }
 
     public void onClick(View v){
@@ -51,7 +57,7 @@ public class MainActivity extends Activity
     		webView.loadUrl(edit.getText().toString());
 
     		//入力フォームの入力を有効にする
-    		webView.requestFocus(v.FOCUS_DOWN);
+    		webView.requestFocus(View.FOCUS_DOWN);
     		break;
     	}
     }
