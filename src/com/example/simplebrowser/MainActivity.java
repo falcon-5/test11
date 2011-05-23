@@ -15,6 +15,8 @@ import android.widget.EditText;
 public class MainActivity extends Activity
 	implements OnClickListener
 {
+	private static final String API_URL = "http://chart.apis.google.com/chart?cht=qr&chs=300x300&choe=UTF-8&chl=";
+
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -27,6 +29,8 @@ public class MainActivity extends Activity
 
         Button btn = (Button)findViewById(R.id.btn_browse);
         btn.setOnClickListener(this);
+        Button btn_qr = (Button)findViewById(R.id.btn_qr);
+        btn_qr.setOnClickListener(this);
 
         WebView webview = (WebView)findViewById(R.id.webview);
 
@@ -59,6 +63,13 @@ public class MainActivity extends Activity
     		//入力フォームの入力を有効にする
     		webView.requestFocus(View.FOCUS_DOWN);
     		break;
+    	case R.id.btn_qr:
+    		//更新ボタン（EditTextに入力されたURLをWebViewで表示させる）
+    		EditText edit2 = (EditText)findViewById(R.id.edit_url);
+    		WebView webView2 = (WebView)findViewById(R.id.webview);
+
+    		//指定したURLをロードする
+    		webView2.loadUrl(API_URL + edit2.getText().toString());
     	}
     }
 }
